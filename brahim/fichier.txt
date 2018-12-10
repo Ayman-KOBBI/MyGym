@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+FILE*f;
+char nom[20]; char prenom[20];
+int age,i=0; int nbPersonnes=0;
+f=fopen("personne.txt","a+"); //ouvrir un fichier en mode ajout
+if(f!=NULL) { //si le fichier est ouvert
+for(i=0; i<2; i++) {//Ajout de 10 personnes
+printf("Saisir les données");
+fflush(stdin);
+gets(nom);
+fflush(stdin);
+gets(prenom);
+scanf("%d",&age);
+ fprintf(f,"%s %s %d \n",nom,prenom,age);//écriture dans le fichier
+}
+fclose(f); //fermeture du fichier
+ } else
+ printf("Impossible d'ouvrir le fichier");
+f=fopen("personne.txt","r");//ouvertur du fichier en mode lecture
+if(f !=NULL) {
+while(fscanf(f,"%s %s %d \n",nom,prenom,&age)!=EOF){ //parcours du fichier
+nbPersonnes++;
+}
+printf("le nombre de personnes est %d",nbPersonnes);
+fclose(f);
+} return 0;
+}
